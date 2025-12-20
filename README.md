@@ -1,7 +1,7 @@
 # cleaning_data
 CSV Data Cleaning & Conversion Pipeline
 
-#Overview
+# Overview
 
 This repository contains a simple, modular data-processing pipeline for cleaning raw CSV data and converting the cleaned output into Excel format. The pipeline is designed to be interactive, transparent, and easy to run from the command line.
 
@@ -26,8 +26,6 @@ Features
 Output
 
 cleaned_output.csv
-
-
 
 # csv_to_excel.py
 
