@@ -15,7 +15,7 @@ Raw CSV → Data Cleaning (CLI) → Cleaned CSV → CSV to Excel Conversion → 
 
 An interactive command-line tool for cleaning CSV datasets using configurable cleaning profiles.
 
-Features
+# Features
 	•	Prompts for input CSV file
 	•	Profile-driven cleaning logic:
 	•	Standard: trims whitespace, removes duplicates, fills missing numeric values with median, fills missing text values with mode or "N/A"
@@ -23,7 +23,7 @@ Features
 	•	Logs all cleaning steps
 	•	Outputs a new cleaned CSV file
 
-Output
+# Output
 
 cleaned_output.csv
 
@@ -31,12 +31,12 @@ cleaned_output.csv
 
 A utility script that converts a cleaned CSV file into Excel format.
 
-Features
+# Features
 	•	Prompts for CSV file name
 	•	Validates file existence and format
 	•	Converts CSV to .xlsx using pandas
 
-Output
+# Output
 
 cleaned_output.xlsx
 
