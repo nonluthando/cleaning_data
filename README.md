@@ -27,7 +27,7 @@ An interactive command-line tool for cleaning CSV datasets using configurable cl
 
 cleaned_output.csv
 
-#### csv_to_excel.py
+### csv_to_excel.py
 
 A utility script that converts a cleaned CSV file into Excel format.
 
