@@ -1,3 +1,9 @@
+"""
+CSV Data Cleaning Tool
+
+Provides configurable cleaning profiles for preparing datasets
+for analysis and machine learning pipelines.
+"""
 import pandas as pd
 import os
 
