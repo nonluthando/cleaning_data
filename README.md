@@ -30,7 +30,7 @@ Raw CSV
 clean_data.py
 Interactive command-line tool for cleaning CSV datasets using configurable cleaning profiles. Supports validation, standardisation, and preparation for downstream analysis.
 
-convert_to_excel.py
+csv_to_excel.py
 
 Converts cleaned CSV outputs into Excel format for ease of analysis and sharing.
 
