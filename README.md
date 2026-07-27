@@ -1,80 +1,94 @@
-# CSV Data Cleaning & Conversion Pipeline
+# CSV Data Cleaning and Excel Conversion Utility
 
 ## Overview
 
-This project provides a Python-based data-preparation pipeline for converting raw CSV datasets into clean, analysis-ready CSV and Excel files.
+This utility was created to speed up repetitive data-preparation tasks while working on the analysis projects in my data analyst portfolio.
 
-It handles common data-quality issues such as:
+Many datasets sourced from platforms such as Kaggle are provided as CSV files. While Python and pandas are useful for cleaning and analysing these datasets, I sometimes wanted to continue the analysis in Excel using tools such as PivotTables, charts and spreadsheet-based exploration.
 
-- Missing values
-- Duplicate rows
-- Extra whitespace
-- Blank text values
-- Fully empty rows
-- Inconsistent file formats
+Instead of manually cleaning and converting each dataset, I created reusable Python scripts that:
 
-The pipeline reduces repetitive manual data preparation and records the transformations applied for greater traceability.
+- Clean common data-quality issues
+- Produce an analysis-ready CSV file
+- Record the cleaning operations applied
+- Convert the cleaned CSV into Excel format
 
-## Pipeline Flow
+This allowed me to move more quickly from raw data to analysis.
+
+## Workflow
 
 ```text
-Raw CSV
-   ↓
-Data Cleaning and Validation
-   ↓
-Cleaned CSV + Cleaning Log
-   ↓
-CSV-to-Excel Conversion
-   ↓
-Analysis-Ready Excel File
+Kaggle or other CSV dataset
+            ↓
+Python cleaning script
+            ↓
+Cleaned CSV + cleaning log
+            ↓
+CSV-to-Excel conversion
+            ↓
+Analysis in Python, Excel or both
 ```
 
-## Key Features
+## Why I Built It
 
-- Two selectable cleaning profiles
-- Safe handling of missing values
-- Whitespace and blank-value normalisation
+During my data-analysis projects, I repeatedly encountered similar preparation tasks:
+
+- Removing duplicate records
+- Handling missing values
+- Trimming inconsistent whitespace
+- Cleaning blank text fields
+- Converting CSV datasets into Excel workbooks
+- Preparing data for PivotTables and reporting
+
+Automating these steps reduced repeated manual work and made the preparation process more consistent across projects.
+
+The utility supports the larger projects available in my data analyst portfolio rather than functioning as a separate analysis project.
+
+## Features
+
+- Selectable standard and aggressive cleaning profiles
 - Duplicate-row removal
-- Median-based numeric imputation
-- Mode-based text imputation
+- Whitespace and blank-value normalisation
+- Missing numeric-value handling
+- Missing text-value handling
+- Optional removal of fully empty rows
 - Cleaning summaries and transformation logs
 - CSV-to-Excel conversion
 - Input-file validation and error handling
-- Support for local Python environments and Google Colab
 
 ## Project Files
 
 ### `clean_data.py`
 
-Interactive command-line tool that:
+An interactive Python command-line script that:
 
 - Loads and validates a CSV file
-- Applies a selected cleaning profile
+- Applies the selected cleaning profile
 - Cleans missing and inconsistent values
-- Removes duplicates
-- Produces a cleaned CSV file
-- Creates a text log describing the transformations
+- Removes duplicate records
+- Produces a cleaned CSV
+- Creates a text log of the transformations applied
 
 ### `csv_to_excel.py`
 
-Converts a cleaned CSV file into Excel format for analysis, reporting and sharing.
+Converts a cleaned CSV file into an Excel workbook for further analysis, PivotTable creation, charting and sharing.
 
 ## Cleaning Profiles
 
-### 1. Standard Profile
+### Standard Profile
 
-The standard profile performs safer cleaning:
+The standard profile:
 
 - Trims whitespace in text columns
 - Converts blank strings into missing values
 - Removes duplicate rows
-- Fills missing numeric values with the column median
-- Fills missing text values with the column mode
+- Fills missing numeric values using the column median
+- Fills missing text values using the column mode
 - Uses `N/A` when no text mode is available
 
-### 2. Aggressive Profile
+### Aggressive Profile
 
-The aggressive profile performs heavier cleaning:
+The aggressive profile:
 
 - Trims whitespace in text columns
 - Converts blank strings into missing values
@@ -97,20 +111,18 @@ pip install pandas openpyxl
 
 ## How to Use
 
-### 1. Download the Project
-
-Clone the repository:
+### 1. Download the Repository
 
 ```bash
 git clone https://github.com/nonluthando/cleaning_data.git
 cd cleaning_data
 ```
 
-Alternatively, download the repository as a ZIP file from GitHub and extract it.
+You can also download the repository as a ZIP file from GitHub.
 
-### 2. Add a CSV File
+### 2. Add the Dataset
 
-Place the CSV file you want to clean in the project folder.
+Place the CSV file in the same folder as the scripts.
 
 Example:
 
@@ -118,10 +130,10 @@ Example:
 cleaning_data/
 ├── clean_data.py
 ├── csv_to_excel.py
-└── customers.csv
+└── customer_data.csv
 ```
 
-### 3. Run the Cleaning Tool
+### 3. Clean the Dataset
 
 Run:
 
@@ -129,13 +141,13 @@ Run:
 python clean_data.py
 ```
 
-When prompted, enter the CSV filename:
+Enter the filename when prompted:
 
 ```text
-customers.csv
+customer_data.csv
 ```
 
-Then select a cleaning profile:
+Choose a cleaning profile:
 
 ```text
 1
@@ -149,27 +161,14 @@ for the Standard profile, or:
 
 for the Aggressive profile.
 
-### 4. Review the Outputs
-
-For a file named `customers.csv`, the cleaning tool creates:
+The script creates:
 
 ```text
-customers_cleaned.csv
-customers_cleaning_log.txt
+customer_data_cleaned.csv
+customer_data_cleaning_log.txt
 ```
 
-The cleaned CSV contains the processed data.
-
-The cleaning log records:
-
-- Initial row count
-- Final row count
-- Number of rows removed
-- Cleaning operations applied
-- Missing-value replacements
-- Duplicate and empty-row removals
-
-### 5. Convert the Cleaned CSV to Excel
+### 4. Convert the Cleaned Dataset to Excel
 
 Run:
 
@@ -177,25 +176,33 @@ Run:
 python csv_to_excel.py
 ```
 
-When prompted, enter:
+Enter:
 
 ```text
-customers_cleaned.csv
+customer_data_cleaned.csv
 ```
 
-The converter creates:
+The script creates:
 
 ```text
-customers_cleaned.xlsx
+customer_data_cleaned.xlsx
 ```
+
+The Excel file can then be used for:
+
+- PivotTables
+- Charts
+- Spreadsheet exploration
+- Reporting
+- Sharing analysis outputs
 
 ## Using Google Colab
 
-Upload the following files to a Google Colab notebook:
+Upload the following files to Google Colab:
 
 - `clean_data.py`
 - `csv_to_excel.py`
-- The CSV file you want to clean
+- The CSV dataset
 
 Install the dependencies:
 
@@ -203,56 +210,25 @@ Install the dependencies:
 !pip install pandas openpyxl
 ```
 
-Run the cleaning tool:
+Run the cleaning script:
 
 ```python
 %run clean_data.py
 ```
 
-Enter the uploaded CSV filename when prompted.
-
-Then run the Excel converter:
+Run the Excel converter:
 
 ```python
 %run csv_to_excel.py
 ```
 
-The generated CSV, log and Excel files can be downloaded from the Colab Files panel.
+The generated files can be downloaded from the Colab Files panel.
 
-## Example
+## Portfolio Context
 
-Input file:
+This utility supports the end-to-end analysis projects in my data analyst portfolio.
 
-```text
-employee_data.csv
-```
-
-After running the cleaning tool:
-
-```text
-employee_data_cleaned.csv
-employee_data_cleaning_log.txt
-```
-
-After running the Excel converter:
-
-```text
-employee_data_cleaned.xlsx
-```
-
-## Intended Use
-
-This pipeline is designed for situations where analysts, researchers or developers regularly receive raw or inconsistently formatted CSV files.
-
-It provides a repeatable preprocessing step before:
-
-- Exploratory data analysis
-- Statistical analysis
-- Dashboard development
-- Reporting
-- Machine-learning workflows
-- Database imports
-- Business decision-support processes
+It demonstrates how I used Python to improve my own analytical workflow by automating repetitive preparation tasks and making it easier to work across both Python and Excel.
 
 ## Technologies
 
